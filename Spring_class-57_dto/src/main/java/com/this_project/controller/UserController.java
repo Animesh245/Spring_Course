@@ -145,6 +145,6 @@ public class UserController {
     @GetMapping(value = "/delete/{id}")
     public String deleteUser(Model model, @PathVariable("id") Long id) {
         userDAO.deleteUser(id);
-        return "user/list";
+        return "redirect:/user/list";
     }
 }
