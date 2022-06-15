@@ -1,6 +1,7 @@
 package com.this_project.dao;
 
 import com.this_project.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,4 +17,7 @@ public interface UserDAO {
     List<User> getUserList();
 
     User getUserById(Long id);
+
+//    For user verification
+    User findByUsername(String username);
 }
