@@ -29,7 +29,7 @@
             <th scope="col">Password</th>
             <th scope="col">Location</th>
             <th scope="col">Update</th>
-<%--            <th scope="col">Delete</th>--%>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -42,7 +42,7 @@
             <td>${user.getUserPassword()}</td>
             <td>${user.getLocation().getLocationName()}</td>
             <td><i onclick="location='/user/update/${user.getId()}'" class="fa-solid fa-pen-to-square"></i></td>
-<%--            <td><i onclick="location='/user/delete/${user.getId()}'" class="fa-solid fa-trash-can"></i></td>--%>
+            <td><i onclick="location='/user/delete/${user.getId()}'" class="fa-solid fa-trash-can"></i></td>
         </tr>
 </c:forEach>
         </tbody>

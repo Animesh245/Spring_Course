@@ -33,6 +33,12 @@
                     <label for="floatingPassword" class="form-label">Password</label>
     </div>
     <div class="col-md-4">
+        <form:select path="role" class="form-select">
+            <form:option value="Select Role" disabled="true" selected="true"/>
+            <form:options items="${roleList}"/>
+        </form:select>
+    </div>
+    <div class="col-md-4">
 <%--        <label for="inputState" class="form-label">Location</label>--%>
         <form:select id="inputState" class="form-select" path="location">
             <form:option  value="Select Location"></form:option>
