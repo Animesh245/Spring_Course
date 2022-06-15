@@ -10,8 +10,10 @@ import com.this_project.dao.UserDAO;
 import com.this_project.dto.UserDTO;
 import com.this_project.entity.Attachment;
 import com.this_project.entity.Location;
+import com.this_project.entity.Role;
 import com.this_project.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -35,6 +38,9 @@ public class UserController {
     @Autowired
     private AttachmentDAO attachmentDAO;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping(value = "/create")
     public ModelAndView createUser(Model model){
 
@@ -47,6 +53,7 @@ public class UserController {
         }
 
 
+        model.addAttribute("roleList", Arrays.asList("ROLE_USER", "ROLE_ADMIN"));
         model.addAttribute("stringLocationList", stringLocationList);
         model.addAttribute("userDTO",new UserDTO());
         return new ModelAndView("/user/create","model", model);
@@ -63,7 +70,8 @@ public class UserController {
         User user = new User();
         user.setUserName(userDTO.getName());
         user.setUserEmail(userDTO.getEmail());
-        user.setUserPassword(userDTO.getPassword());
+        user.setUserPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setRole(Role.valueOf(userDTO.getRole()));
         user.setLocation(location);
         user.setAttachment(attachment);
         userDAO.saveUser(user);
@@ -72,6 +80,7 @@ public class UserController {
         locationDAO.updateLocation(location);
 
         model.addAttribute("user", user);
+
 
         return "redirect:/user/show/" + user.getId();
 
