@@ -1,10 +1,14 @@
 package com.this_project.dao_impl;
 
 import com.this_project.dao.UserDAO;
+import com.this_project.entity.Location;
 import com.this_project.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -65,6 +69,24 @@ public class UserDAO_impl implements UserDAO {
         Session session = sessionFactory.getCurrentSession();
 
         User user = session.get(User.class, id);
+        session.flush();
+        return user;
+    }
+
+    @Override
+    public User findByUsername(String username) throws UsernameNotFoundException {
+        Session session = sessionFactory.getCurrentSession();
+        User user = null;
+
+        try {
+            String hql = "FROM User WHERE userName= :name";
+
+            Query query = session.createQuery(hql, User.class).setParameter("name", username);
+            user = (User) query.uniqueResult();
+        }catch (Exception e){
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
         session.flush();
         return user;
     }
