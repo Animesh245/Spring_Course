@@ -1,13 +1,18 @@
 package com.this_project.entity;
 
 import com.this_project.dto.AttachmentDTO;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "attachments")
 public class Attachment implements Serializable {
 
