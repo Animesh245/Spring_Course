@@ -81,7 +81,6 @@ public class UserController {
 
         model.addAttribute("user", user);
 
-
         return "redirect:/user/show/" + user.getId();
 
     }

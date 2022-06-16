@@ -28,18 +28,18 @@ public class RootController {
 
 //  Not entering to this url
 
-//    @GetMapping("/login")
-//    public String login(Model model, @RequestParam(name="error", required = false) String error) {
-//        generateUsers();
-//        model.addAttribute("error", error);
-//        return "auth/login";
-//    }
-
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, @RequestParam(name="error", required = false) String error) {
         generateUsers();
+        model.addAttribute("error", error);
         return "auth/login";
     }
+
+//    @GetMapping("/login")
+//    public String login(Model model) {
+//        generateUsers();
+//        return "auth/login";
+//    }
 
     private void generateUsers() {
 
