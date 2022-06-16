@@ -1,2 +1,5 @@
 # ignore ALL files in ANY directory named target
 **/target
+
+#ignore all files in .idea folder
+**/idea
