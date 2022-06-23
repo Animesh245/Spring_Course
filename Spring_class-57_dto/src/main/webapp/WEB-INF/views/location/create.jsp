@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: warrior245
@@ -12,7 +13,7 @@
     <title>Create Location</title>
 </head>
 <body>
-<%@include file="../../resources/js/header.ejs" %>
+<%@include file="../header.jsp" %>
 
 <%--@elvariable id="locationDTO" type="com.this_project.dto.LocationDTO"--%>
 <form:form action="${pageContext.request.contextPath}/location/save" method="post" modelAttribute="locationDTO">

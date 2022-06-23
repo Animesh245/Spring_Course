@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<%@include file="../../resources/js/header.ejs" %>
+<%@include file="../header.jsp" %>
 <br>
 <div class="container">
 

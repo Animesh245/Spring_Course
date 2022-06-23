@@ -12,7 +12,7 @@
     <title>Status</title>
 </head>
 <body>
-<%@include file="../../resources/js/header.ejs" %>
+<%@include file="../header.jsp" %>
 <div class="container">
     <table class="table">
         <thead>

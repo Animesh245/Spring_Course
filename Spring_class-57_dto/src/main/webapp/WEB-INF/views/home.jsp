@@ -12,7 +12,7 @@
 </head>
 <body>
 <%--<h1>${name}! Success</h1>--%>
-<%@include file="../resources/js/header.ejs" %>
+<%@include file="header.jsp" %>
 <h3>${name}</h3>
 <%--<div>--%>
 <%--    <h4>location</h4>--%>

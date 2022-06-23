@@ -1,8 +1,11 @@
-<html>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<html lang="">
 <head>
 <!--    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">-->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <title></title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -15,7 +18,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         User
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -26,7 +29,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Status
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -45,6 +48,19 @@
                     </ul>
                 </li>
             </ul>
+
+            <ul class="navbar-nav navbar-right">
+                <sec:authorize access="!isAuthenticated()">
+                    <a class="btn btn-secondary" href="/auth/login">Login</a>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <!--                Username showing on homepage-->
+<%--                    <sec:authentication property="username"/>--%>
+                    <a class="btn btn-danger" href="/logout">Logout</a>
+                </sec:authorize>
+            </ul>
+
+
         </div>
     </div>
 </nav>

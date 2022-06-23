@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<%@include file="../../resources/js/header.ejs" %>
+<%@include file="../header.jsp" %>
 <br>
 <div class="container">
     <%--@elvariable id="statusDTO" type="com.this_project.dto.StatusDTO"--%>
