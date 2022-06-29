@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  spring_form:
+    container_name:
+      'spring_form'
+    image:
+      'spring_form_image'
+    build: ./
+    ports:
+      - '8083:8080'
+    depends_on:
+      - spring_form_db
+    command: catalina.sh run
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://spring_form_db:5432/spring_form_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: dbpass
+      SERVER_PORT: 8083
+    networks:
+      - spring_form_network
+
+  spring_form_db:
+      image: 'postgres'
+      container_name: 'spring_form_db'
+      volumes:
+      - type: volume
+        source: spring_form
+        target: "$PWD/Documents/docker_data/spring_form"
+      ports:
+        - '5433:5432'
+#        outside:inside
+      environment:
+        - 'POSTGRES_PASSWORD=dbpass'
+        - 'POSTGRES_USER=postgres'
+        - 'POSTGRES_DB=spring_form_db'
+      networks:
+        - spring_form_network
+      extra_hosts:
+        - 'spring_form_network:192.168.0.101'
+volumes:
+      spring_form:
+networks:
+      spring_form_network:
+
