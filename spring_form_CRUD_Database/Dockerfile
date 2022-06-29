@@ -1,8 +1,8 @@
 
 FROM tomcat:9
 
-RUN rm -rf ./apache-tomcat-9.0.62/webapps/*
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY ./target/Form_CRUD_Database-1.0.0-SNAPSHOT.war ./apache-tomcat-9.0.62/webapps/ROOT.war
+COPY ./target/Form_CRUD_Database-1.0.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
-CMD ["/apache-tomcat-9.0.62/bin/catalina.sh", "run"]
+CMD ["catalina.sh", "run"]
