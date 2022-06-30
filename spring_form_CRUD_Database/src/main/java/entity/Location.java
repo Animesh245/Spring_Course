@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "locations")
+@Table(name = "location_list")
 public class Location implements Serializable {
 
     @Id
@@ -20,9 +20,6 @@ public class Location implements Serializable {
     @Column(name = "location_name")
     private String locationName;
 
-    @OneToMany(orphanRemoval = true, mappedBy = "location")
+    @OneToMany(orphanRemoval = true, mappedBy = "location", fetch = FetchType.LAZY)
     private List<User> users = new ArrayList<>();
-
-    @OneToMany(orphanRemoval = true, mappedBy = "location")
-    private List<Status> statuses = new ArrayList<>();
 }

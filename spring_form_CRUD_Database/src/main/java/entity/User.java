@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "user_list")
 public class User implements Serializable {
 
     @Id
@@ -32,8 +32,5 @@ public class User implements Serializable {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "attachment_id", referencedColumnName = "id")
     private Attachment attachment;
-
-    @OneToMany(orphanRemoval = true, mappedBy = "user")
-    private List<Status> statusList;
 
 }

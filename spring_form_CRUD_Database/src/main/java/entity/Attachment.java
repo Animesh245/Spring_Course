@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "attachments")
+@Table(name = "attachment_list")
 public class Attachment implements Serializable {
 
     @Id
