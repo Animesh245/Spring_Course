@@ -20,7 +20,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackages = {"com.this_project.service", "com.this_project.config"})
-//if not added componentScan this class is unable to find both the beans.
 public class SecurityConfig{
 
 
@@ -45,56 +44,41 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-//        http
-//                .csrf().disable()
-//                .formLogin()
-//                .loginPage("/login") // Login page will be accessed through this endpoint. We will create a controller method for this.
-//                .loginProcessingUrl("/login-processing") // This endpoint will be mapped internally. This URL will be our Login form post action.
-//                .permitAll() // We re permitting all for login page
-////                .usernameParameter("username")
-////                .passwordParameter("password")
-//                .defaultSuccessUrl("/") // If the login is successful, user will be redirected to this URL.
-//                .failureUrl("/login?error=true") // If the user fails to login, application will redirect the user to this endpoint
-//                .and()
-//                .logout()
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/");
-
         http
-                .authorizeHttpRequests(authz -> authz.anyRequest().authenticated()).httpBasic(withDefaults());
-//        http
-//                .authorizeRequests(auth -> auth .antMatchers("/resources/**", "/temp/**")
-//                        .permitAll()
-//                        .antMatchers("/", "/login")
-//                        .permitAll()
-//                        .anyRequest()
-//                        .authenticated() )
-//                .formLogin(form -> form .loginPage("/login")
-//                        .permitAll()
-//                        .usernameParameter("username")
-//                        .passwordParameter("password")
-//                        .loginProcessingUrl("/login-process")
-//                        .defaultSuccessUrl("/")
-//                        .permitAll() );
+                .authorizeHttpRequests()
+//                        Permitting all static resources to be accessed publicly
+                                        .antMatchers("/images/**", "/css/**", "/js/**", "/vendor/**").permitAll()
+//                        Permitting /login and /user type urls to all
+                                        .antMatchers("/auth/login/**", "/status/list", "/user/create").permitAll()
+//                        /location/** type url can be accessed only if client's role is ADMIN
+                                        .antMatchers("/location/create", "/user/delete/**").hasAuthority("ROLE_ADMIN")
+                                .antMatchers("/location/list").hasAnyRole("USER","ADMIN")
+                                .antMatchers("/status/create","/status/update/**","/status/delete/**", "/user/update/**").hasRole("USER")
+//                        Other than above-mentioned urls no request will be allowed access
+                                .anyRequest().authenticated()
 
+                .and()
+//              Configuring form login page
+                .formLogin()
+//                This is the landing page url
+                .loginPage("/auth/login")
+//                Login post action url
+                .loginProcessingUrl("/login-processing")
+//                Permitting all to the login page
+                .permitAll()
+//               jsp page input name tag values should match with this
+                .usernameParameter("email")
+                .passwordParameter("password")
+//                landing page after successful login
+                .defaultSuccessUrl("/")
+//                  Endpoint to hit for failed login
+                .failureUrl("/auth/login?error=true")
+                .and()
+                .logout()
+                .logoutUrl("/auth/logout")
+                .logoutSuccessUrl("/").permitAll();
 
-        return http.build();
+                return http.build();
+
     }
 }
-
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//     http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated()).httpBasic(withDefaults());
-//     http .authorizeRequests(auth -> auth .antMatchers("/resources/**", "/temp/**")
-//                     .permitAll()
-//                     .antMatchers("/", "/login")
-//                     .permitAll() .anyRequest().authenticated() )
-//                     .formLogin(form -> form .loginPage("/login")
-//                     .permitAll()
-//                     .usernameParameter("username")
-//                     .passwordParameter("password")
-//                     .loginProcessingUrl("/login-process")
-//                     .defaultSuccessUrl("/")
-//                     .permitAll() );
-//     return http.build(); }
-//    }
