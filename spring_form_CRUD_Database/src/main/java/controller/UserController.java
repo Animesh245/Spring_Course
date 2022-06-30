@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     private LocationDAO locationDAO;
+
+    @Autowired
+    private  FileController fileController;
 
     @GetMapping("/create")
     public ModelAndView create(Model model) {
@@ -44,11 +48,11 @@ public class UserController {
     }
 
     @PostMapping(value = "/store")
-    public String store(Model model, @ModelAttribute("userDto") UserDto userDto, @RequestParam("file") MultipartFile file) {
+    public String store(Model model, @ModelAttribute("userDto") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
 
         Location location = locationDAO.getByName(userDto.getLocation());
 
-        Attachment attachment = Utils.saveFile(file, "99");
+        Attachment attachment = fileController.uploadFile(file);
 
         User user = new User();
         user.setName(userDto.getName());
@@ -93,12 +97,12 @@ public class UserController {
     }
 
 
-    @GetMapping("/maintain")
+    @GetMapping("/list")
     public String maintain(Model model) {
 
         List<User> userList = userDAO.getAll();
         model.addAttribute("userList", userList);
 
-        return "user/maintain";
+        return "user/list";
     }
 }
