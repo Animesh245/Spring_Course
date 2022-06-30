@@ -2,4 +2,6 @@
 **/target
 
 #ignore all files in .idea folder
-**/idea
+**/.idea/**
+
+
