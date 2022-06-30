@@ -10,7 +10,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/status/card-view">Travel Agency </a>
+        <a class="navbar-brand" href="#">Demo App </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,15 +28,15 @@
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Status
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/status/create">Create Status</a></li>
-                        <li><a class="dropdown-item" href="/status/list">Status List</a></li>
-                    </ul>
-                </li>
+<%--                <li class="nav-item dropdown">--%>
+<%--                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">--%>
+<%--                        Status--%>
+<%--                    </a>--%>
+<%--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--%>
+<%--                        <li><a class="dropdown-item" href="/status/create">Create Status</a></li>--%>
+<%--                        <li><a class="dropdown-item" href="/status/list">Status List</a></li>--%>
+<%--                    </ul>--%>
+<%--                </li>--%>
 
                 <li class="nav-item dropdown">
 
@@ -53,16 +53,16 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav navbar-right">
-                <sec:authorize access="!isAuthenticated()">
-                    <a class="btn btn-secondary" href="/auth/login">Login</a>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <!--                Username showing on homepage-->
-<%--                    <sec:authentication property="username"/>--%>
-                    <a class="btn btn-danger" href="/logout">Logout</a>
-                </sec:authorize>
-            </ul>
+<%--            <ul class="navbar-nav navbar-right">--%>
+<%--                <sec:authorize access="!isAuthenticated()">--%>
+<%--                    <a class="btn btn-secondary" href="/auth/login">Login</a>--%>
+<%--                </sec:authorize>--%>
+<%--                <sec:authorize access="isAuthenticated()">--%>
+<%--                    <!--                Username showing on homepage-->--%>
+<%--&lt;%&ndash;                    <sec:authentication property="username"/>&ndash;%&gt;--%>
+<%--                    <a class="btn btn-danger" href="/logout">Logout</a>--%>
+<%--                </sec:authorize>--%>
+<%--            </ul>--%>
 
 
         </div>

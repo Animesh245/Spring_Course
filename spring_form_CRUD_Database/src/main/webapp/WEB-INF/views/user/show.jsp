@@ -11,6 +11,7 @@
     <title>User List</title>
 </head>
 <body>
+<%@include file="../header.jsp"%>
     Name: ${user.getName()}<br>
     Email: ${user.getEmail()}<br>
     Location: ${user.getLocation().getLocationName()}<br>

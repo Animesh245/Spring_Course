@@ -16,6 +16,6 @@
 <%--<h1>${name}</h1>--%>
 <h3>Success!! now running practice-3 project</h3>
 <br><br>
-<a href="/user/create">Add User?</a>
+
 </body>
 </html>

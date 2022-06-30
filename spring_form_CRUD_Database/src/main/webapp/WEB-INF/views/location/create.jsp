@@ -16,8 +16,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
 </head>
 <body>
+<%@include file="../header.jsp"%><br>
 <%--@elvariable id="location" type="com.fuad.entity.Location"--%>
-    <form:form action="${pageContext.request.contextPath}/location/store" method="post" modelAttribute="location">
+    <form:form action="${pageContext.request.contextPath}/location/save" method="post" modelAttribute="location">
 
         Location:
         <form:input cssClass="form-control" path="locationName"/>

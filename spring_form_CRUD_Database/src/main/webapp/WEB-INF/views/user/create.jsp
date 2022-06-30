@@ -14,7 +14,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
 </head>
 <body>
-
+<%@include file="../header.jsp"%>
+<br>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-9">
