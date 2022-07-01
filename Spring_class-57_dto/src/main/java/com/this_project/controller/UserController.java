@@ -13,6 +13,9 @@ import com.this_project.entity.Location;
 import com.this_project.entity.Role;
 import com.this_project.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +37,6 @@ public class UserController {
 
     @Autowired
     private LocationDAO locationDAO;
-
-    @Autowired
-    private AttachmentDAO attachmentDAO;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -82,7 +82,6 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "redirect:/user/show/" + user.getId();
-
     }
 
     @GetMapping(value = "/show/{id}")
@@ -103,10 +102,47 @@ public class UserController {
         return "user/list";
     }
 
-    @GetMapping(value = "/update/{id}")
-    public String update(Model model,  @PathVariable(value = "id") String id){
+//    @GetMapping(value = "/update/{id}")
+//    public String update(Model model,  @PathVariable(value = "id") String id){
+//
+//        User user = userDAO.getUserById(Long.parseLong(id));
+//
+//        List<Location> locationList = locationDAO.getLocationList();
+//        List<String> stringLocationList = new ArrayList<>();
+//
+//        for(Location location: locationList){
+//            stringLocationList.add(location.getLocationName());
+//        }
+//
+//        model.addAttribute("stringLocationList", stringLocationList);
+//        UserDTO userDTO = new UserDTO();
+//        userDTO.setId(user.getId());
+//        userDTO.setName(user.getUserName());
+//        userDTO.setEmail(user.getUserEmail());
+//        userDTO.setPassword(user.getUserPassword());
+//        userDTO.setLocation(user.getLocation().getLocationName());
+//
+//        model.addAttribute("userDTO", userDTO);
+//
+//        return "user/update";
+//    }
 
-        User user = userDAO.getUserById(Long.parseLong(id));
+    @GetMapping(value = "/getUser")
+    public String getUser(Model model, Authentication authentication)
+    {
+
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if( principal instanceof UserDetails)
+//        {
+//            String userEmail = ((UserDetails) principal).getUsername();
+//        }else {
+//            String userEmail = principal.toString();
+//        }
+
+//        Above-mentioned code is hard-wired so not a good practice. So we will prefer using dependency injection and let Spring provide us the userDetails
+
+        String userEmail = authentication.getName();
+        User user = userDAO.findByEmail(userEmail);
 
         List<Location> locationList = locationDAO.getLocationList();
         List<String> stringLocationList = new ArrayList<>();
@@ -125,7 +161,7 @@ public class UserController {
 
         model.addAttribute("userDTO", userDTO);
 
-        return "user/update";
+    return "user/update";
     }
 
     @PostMapping(value = "/update")
