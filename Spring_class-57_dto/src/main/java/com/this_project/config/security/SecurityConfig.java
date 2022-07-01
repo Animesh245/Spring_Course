@@ -49,9 +49,9 @@ public class SecurityConfig{
 //                        Permitting all static resources to be accessed publicly
                                         .antMatchers("/images/**", "/css/**", "/js/**", "/vendor/**").permitAll()
 //                        Permitting /login and /user type urls to all
-                                        .antMatchers("/auth/login/**", "/status/list", "/user/create").permitAll()
+                                        .antMatchers("/auth/login/**", "/status/list", "/user/create", "/status/card-view").permitAll()
 //                        /location/** type url can be accessed only if client's role is ADMIN
-                                        .antMatchers("/location/create", "/user/delete/**").hasAuthority("ROLE_ADMIN")
+                                        .antMatchers("/location/create","/status/delete/**", "/user/delete/**").hasAuthority("ROLE_ADMIN")
                                 .antMatchers("/location/list").hasAnyRole("USER","ADMIN")
                                 .antMatchers("/status/create","/status/update/**","/status/delete/**", "/user/update/**").hasRole("USER")
 //                        Other than above-mentioned urls no request will be allowed access
@@ -70,7 +70,7 @@ public class SecurityConfig{
                 .usernameParameter("email")
                 .passwordParameter("password")
 //                landing page after successful login
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/status/card-view")
 //                  Endpoint to hit for failed login
                 .failureUrl("/auth/login?error=true")
                 .and()
