@@ -36,6 +36,9 @@
 
   <div class="login-form">
       <form:form class="row g-3" action="${pageContext.request.contextPath }/login-processing" method="POST">
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
         <div class="form-floating">
           <input id="Email" type="text" name="email" class="form-control" placeholder="email"/>
           <label for="Email">Email</label>

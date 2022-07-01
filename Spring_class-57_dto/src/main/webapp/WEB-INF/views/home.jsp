@@ -14,22 +14,5 @@
 <%--<h1>${name}! Success</h1>--%>
 <%@include file="header.jsp" %>
 <h3>${name}</h3>
-<%--<div>--%>
-<%--    <h4>location</h4>--%>
-<%--    <a href="${pageContext.request.contextPath}/location/create">Create Location</a>--%>
-<%--    <a href="${pageContext.request.contextPath}/location/list">Location List</a>--%>
-<%--</div>--%>
-
-<%--<div>--%>
-<%--    <h4>User</h4>--%>
-<%--    <a href="${pageContext.request.contextPath}/user/create">Create User</a>--%>
-<%--    <a href="${pageContext.request.contextPath}/user/list">User List</a>--%>
-<%--</div>--%>
-
-<%--<div>--%>
-<%--    <h4>Status</h4>--%>
-<%--    <a href="${pageContext.request.contextPath}/status/create">Create Status</a>--%>
-<%--    <a href="${pageContext.request.contextPath}/status/list">Status List</a>--%>
-<%--</div>--%>
 </body>
 </html>
