@@ -1,6 +1,7 @@
 package com.this_project.config;
 
 import com.this_project.config.security.SecurityConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -25,11 +26,11 @@ public class AppInitializer implements WebApplicationInitializer {
 //        Servlet Config
         AnnotationConfigWebApplicationContext servletConfig = new AnnotationConfigWebApplicationContext();
         servletConfig.register(ServletConfig.class);
-
+        ServletRegistration.Dynamic servletRegistration = servletContext.addServlet("servlet", new DispatcherServlet(servletConfig));
 
         // Multipart Config
-        ServletRegistration.Dynamic servletRegistration = servletContext.addServlet("servlet", new DispatcherServlet(servletConfig));
-        servletRegistration.setMultipartConfig(new MultipartConfigElement("/tmp", 2097152, 4194304, 50));
+        MultipartConfigElement multipartConfigElement = new MultipartConfigElement(Properties.TMP_FOLDER, Properties.MAX_UPLOAD_SIZE, Properties.MAX_UPLOAD_SIZE * 5, 0);
+        servletRegistration.setMultipartConfig(multipartConfigElement);
 
         FilterRegistration.Dynamic multipartFilter = servletContext.addFilter("multipartFilter", MultipartFilter.class);
         multipartFilter.addMappingForUrlPatterns(null, true, "/*");
