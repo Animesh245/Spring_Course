@@ -20,4 +20,6 @@ public interface UserDAO {
 
 //    For user verification
     User findByUsername(String username);
+
+    User findByEmail(String email);
 }
