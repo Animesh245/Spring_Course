@@ -4,12 +4,18 @@ import com.this_project.dao.UserDAO;
 import com.this_project.entity.Role;
 import com.this_project.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.security.Security;
 
 @Controller
 @RequestMapping(value = "/auth")
@@ -48,5 +54,14 @@ public class AuthController {
         generateUsers();
         model.addAttribute("error", error);
         return "auth/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication){
+    if(authentication != null)
+    {
+        new SecurityContextLogoutHandler().logout(request,response,authentication);
+    }
+        return "redirect:/auth/login";
     }
 }
