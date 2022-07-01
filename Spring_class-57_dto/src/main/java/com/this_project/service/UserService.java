@@ -25,18 +25,18 @@ public class UserService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var userFromDb = userDAO.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        com.this_project.entity.User userFromDb = userDAO.findByEmail(email);
 //                .orElseThrow(() -> new UsernameNotFoundException("No user found with this email address."));
 
         if (userFromDb == null) {
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(email);
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>(Collections.emptyList());
 
         authorities.add((GrantedAuthority) () -> userFromDb.getRole().name());
 
-        return new User(userFromDb.getUserName(), userFromDb.getUserPassword(), authorities);
+        return new User(userFromDb.getUserEmail(), userFromDb.getUserPassword(), authorities);
     }
 }
