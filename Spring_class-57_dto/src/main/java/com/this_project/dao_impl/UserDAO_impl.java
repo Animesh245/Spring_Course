@@ -90,4 +90,22 @@ public class UserDAO_impl implements UserDAO {
         session.flush();
         return user;
     }
+
+    @Override
+    public User findByEmail(String email) throws UsernameNotFoundException {
+        Session session = sessionFactory.getCurrentSession();
+        User user = null;
+
+        try {
+            String hql = "FROM User WHERE userEmail= :email";
+
+            Query query = session.createQuery(hql, User.class).setParameter("email", email);
+            user = (User) query.uniqueResult();
+        }catch (Exception e){
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        session.flush();
+        return user;
+    }
 }
