@@ -1,5 +1,6 @@
 package com.this_project.config;
 
+import com.this_project.controller.AuthSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,5 +25,11 @@ public class RootConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
 //        return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Bean
+    public AuthSuccessHandler authSuccessHandler()
+    {
+        return new AuthSuccessHandler();
     }
 }
