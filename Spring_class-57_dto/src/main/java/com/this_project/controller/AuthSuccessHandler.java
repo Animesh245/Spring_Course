@@ -24,12 +24,12 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        HttpSession session = request.getSession();
-
-        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        session.setAttribute("user", authUser);
-        session.setAttribute("email", authUser.getUsername());
-        session.setAttribute("authorities", authentication.getAuthorities());
+//        HttpSession session = request.getSession();
+//
+//        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        session.setAttribute("user", authUser);
+//        session.setAttribute("email", authUser.getUsername());
+//        session.setAttribute("authorities", authentication.getAuthorities());
 
         //set our response to OK status
         response.setStatus(HttpServletResponse.SC_OK);
