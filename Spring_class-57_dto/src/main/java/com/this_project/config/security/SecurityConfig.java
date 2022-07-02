@@ -1,5 +1,6 @@
 package com.this_project.config.security;
 
+import com.this_project.controller.AuthSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,15 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -28,10 +23,12 @@ public class SecurityConfig{
 
     private final UserDetailsService userDetailsService;
 
+    private final AuthSuccessHandler authSuccessHandler;
 
-    public SecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
+    public SecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService, AuthSuccessHandler authSuccessHandler) {
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
+        this.authSuccessHandler = authSuccessHandler;
     }
 
 
@@ -69,6 +66,7 @@ public class SecurityConfig{
 //               jsp page input name tag values should match with this
                 .usernameParameter("email")
                 .passwordParameter("password")
+                .successHandler(authSuccessHandler)
 //                landing page after successful login
                 .defaultSuccessUrl("/status/card-view")
 //                  Endpoint to hit for failed login
