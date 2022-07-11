@@ -4,4 +4,6 @@
 #ignore all files in .idea folder
 **/.idea/**
 
+#ignore .iml files
+*.iml
 
