@@ -17,19 +17,19 @@ import java.security.Principal;
 
 public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
-        AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
-    }
+//    @Override
+//    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+//        AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
+//    }
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-//        HttpSession session = request.getSession();
-//
-//        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        session.setAttribute("user", authUser);
-//        session.setAttribute("email", authUser.getUsername());
-//        session.setAttribute("authorities", authentication.getAuthorities());
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+        HttpSession session = request.getSession();
+
+        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        session.setAttribute("user", authUser);
+        session.setAttribute("email", authUser.getUsername());
+        session.setAttribute("authorities", authentication.getAuthorities());
 
         //set our response to OK status
         response.setStatus(HttpServletResponse.SC_OK);
