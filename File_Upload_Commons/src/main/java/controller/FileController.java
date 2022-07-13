@@ -25,6 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class FileController
@@ -45,8 +46,9 @@ public class FileController
 
 //        System.out.println("File upload handler");
 
-//        System.out.println(file.getContentType());
-//        System.out.println(file.getStorageDescription());   // shows where the file is stored temporarily
+        System.out.println(file.getInputStream());
+        System.out.println(file.getContentType());
+        System.out.println(file.getStorageDescription());   // shows where the file is stored temporarily
 
 
         byte[] byteFile = file.getBytes();       //store byte data in a file
@@ -58,14 +60,17 @@ public class FileController
 //        Path path = Paths.get(session.getServletContext().getRealPath("/") + "WEB-INF" +File.separator+ "resources" +File.separator+ "images"+File.separator+ file.getOriginalFilename());            // file is stored in the server
 //        String path = "/home/warrior245/Documents/Projects/File_Upload_Commons/src/main/webapp/WEB-INF/resources/images/" + file.getOriginalFilename();          // Storing files in project classpath
         Path path = Paths.get(Properties.STORE_FOLDER);           // Creating path of the Selected Folder
-        Path desPath = path.resolve(file.getOriginalFilename());           // Creating path inside the Storage Folder
+        Path desPath = path.resolve(Objects.requireNonNull(file.getOriginalFilename()));           // Creating path inside the Storage Folder
 
         System.out.println(path);
         System.out.println(desPath.toFile().exists());
 
             if(!desPath.toFile().exists()) {
-                desPath.toFile().createNewFile();  //creating new file in the path
-                System.out.println(desPath);
+                boolean result = desPath.toFile().createNewFile();  //creating new file in the path
+                if(!result){
+                    System.out.println("File not created");
+                }
+
             }
 
 

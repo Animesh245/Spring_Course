@@ -18,6 +18,6 @@ public class ServletConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(
-                 "/images/**").addResourceLocations("/WEB-INF/resources/images/", "file://"+ Properties.STORE_FOLDER).setCachePeriod(3600);
+                 "/images/**").addResourceLocations("/WEB-INF/resources/images/", "file://"+ Properties.STORE_FOLDER).setCachePeriod(3600); //file:/// is used for browser to access local files
     }
 }
