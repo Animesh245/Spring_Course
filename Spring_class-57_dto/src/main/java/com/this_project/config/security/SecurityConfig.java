@@ -25,7 +25,7 @@ public class SecurityConfig{
 
     private final AuthSuccessHandler authSuccessHandler;
 
-    public SecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService, AuthSuccessHandler authSuccessHandler) {
+    public SecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService , AuthSuccessHandler authSuccessHandler) {
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
         this.authSuccessHandler = authSuccessHandler;
@@ -46,7 +46,7 @@ public class SecurityConfig{
 //                        Permitting all static resources to be accessed publicly
                                         .antMatchers("/images/**", "/css/**", "/js/**", "/vendor/**").permitAll()
 //                        Permitting /login and /user type urls to all
-                                        .antMatchers("/auth/login/**", "/status/list", "/user/create", "/status/card-view").permitAll()
+                                        .antMatchers("/auth/login/**", "/status/list", "/user/create", "/user/save", "/status/card-view").permitAll()
 //                        /location/** type url can be accessed only if client's role is ADMIN
                                         .antMatchers("/location/create","/status/delete/**", "/user/delete/**").hasAuthority("ROLE_ADMIN")
                                 .antMatchers("/location/list").hasAnyRole("USER","ADMIN")
@@ -68,7 +68,7 @@ public class SecurityConfig{
                 .passwordParameter("password")
                 .successHandler(authSuccessHandler)
 //                landing page after successful login
-                .defaultSuccessUrl("/status/card-view")
+//                .defaultSuccessUrl("/status/card-view")
 //                  Endpoint to hit for failed login
                 .failureUrl("/auth/login?error=true")
                 .and()
