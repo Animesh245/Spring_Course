@@ -19,10 +19,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,35 +56,51 @@ public class UserController {
         }
 
 
-        model.addAttribute("roleList", Arrays.asList("ROLE_USER", "ROLE_ADMIN"));
+//        model.addAttribute("roleList", Arrays.asList("ROLE_USER", "ROLE_ADMIN"));
         model.addAttribute("stringLocationList", stringLocationList);
         model.addAttribute("userDTO",new UserDTO());
         return new ModelAndView("/user/create","model", model);
     }
 
     @PostMapping(value = "/save")
-    public String saveUser(Model model, @ModelAttribute("userDTO") UserDTO userDTO , @RequestParam("image") MultipartFile file) throws IOException{
-        Location location = locationDAO.getLocationByName(userDTO.getLocation());
 
-        Attachment attachment = Utils.saveFile(file, Properties.USER_FOLDER);
+    public String saveUser(Model model, @Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result, @RequestParam("image") MultipartFile file){
+
+        if(result.hasErrors())
+        {
+            List<Location> locationList = locationDAO.getLocationList();
+            List<String> stringLocationList = new ArrayList<>();
+
+            for (Location location: locationList){
+                stringLocationList.add(location.getLocationName());
+            }
+            model.addAttribute("stringLocationList", stringLocationList);
+
+            return "/user/create";
+        }else {
+            Location location = locationDAO.getLocationByName(userDTO.getLocation());
+
+            Attachment attachment = Utils.saveFile(file, Properties.USER_FOLDER);
 
 //        attachmentDAO.insert(attachment);
 
-        User user = new User();
-        user.setUserName(userDTO.getName());
-        user.setUserEmail(userDTO.getEmail());
-        user.setUserPassword(passwordEncoder.encode(userDTO.getPassword()));
-        user.setRole(Role.valueOf(userDTO.getRole()));
-        user.setLocation(location);
-        user.setAttachment(attachment);
-        userDAO.saveUser(user);
+            User user = new User();
+            user.setUserName(userDTO.getName());
+            user.setUserEmail(userDTO.getEmail());
+            user.setUserPassword(passwordEncoder.encode(userDTO.getPassword()));
+            user.setRole(Role.ROLE_USER);
+            user.setLocation(location);
+            user.setAttachment(attachment);
+            userDAO.saveUser(user);
 
-        location.getUserList().add(user);
-        locationDAO.updateLocation(location);
+            location.getUserList().add(user);
+            locationDAO.updateLocation(location);
 
-        model.addAttribute("user", user);
+            model.addAttribute("user", user);
 
-        return "redirect:/user/show/" + user.getId();
+            return "redirect:/user/show/" + user.getId();
+        }
+
     }
 
     @GetMapping(value = "/show/{id}")
