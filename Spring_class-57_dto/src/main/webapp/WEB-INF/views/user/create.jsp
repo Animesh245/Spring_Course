@@ -37,6 +37,7 @@
                 <label for="inputPassword4" class="form-label">Password</label>
                 <form:input type="password" class="form-control" id="inputPassword4" path="password"/>
                 <input type="checkbox" onclick="showPassword()"> Show Password
+                <br>
                 <form:errors path="password" cssClass="text-danger"/>
             </div>
             <div class="col-md-6">
@@ -68,6 +69,5 @@
         }
     }
 </script>
-
 </body>
 </html>
