@@ -1,64 +1,94 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: warrior245
-  Date: 6/15/22
-  Time: 7:11 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body>
-<%@include file="../header.jsp" %>
-<br>
-<div class="container">
-<c:if test="${error == 'true'}">
-  <div class="alert alert-danger" role="alert">Wrong username or
-    password
-  </div>
-</c:if>
-    <div class="sidenav">
-      <div class="login-main-text">
-        <h2>
-          Application<br> Login Page
-        </h2>
-        <p>Login or register from here to access.</p>
-      </div>
-    </div>
+    <title>Login Page</title>
+<%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/signin.css">--%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
 
-  <div class="login-form">
-      <form:form class="row g-3" action="${pageContext.request.contextPath }/login-processing" method="POST">
+        body {
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: rgb(220, 220, 220);
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+        }
+
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
+
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    </style>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>--%>
+</head>
+<body class="body">
+<main class="form-signin w-100 m-auto">
+    <c:if test="${error == 'true'}">
+        <div class="alert alert-danger" role="alert">Wrong username or
+            password
+        </div>
+    </c:if>
+    <form:form action="${pageContext.request.contextPath }/login-processing" method="POST">
         <input type="hidden"
                name="${_csrf.parameterName}"
                value="${_csrf.token}"/>
+        <!--    <img class="mb-4" src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <div class="form-floating">
-          <input id="Email" type="text" name="email" class="form-control" placeholder="email"/>
-          <label for="Email">Email</label>
+            <input name="email"  type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating">
-          <input type="password" id="floatingPassword" class="form-control" name="password" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+            <input name="password"  type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
         </div>
+        <div class="checkbox mb-3">
+                    <input type="checkbox" onclick="showPassword()"> Show Password
+        </div>
+<%--        <button class="w-50  btn btn-primary" type="submit">Sign in</button> <button type="button" class="w-50 btn btn-success">Register</button>--%>
 
-        <div class="btn-group">
-          <div class="col-md-1">
-            <button type="submit" class="btn btn-success">Login</button>
-          </div>
-          <div class="col-md-1">
-<%--            <button type="submit" class="btn btn-secondary" formaction="${pageContext.request.contextPath}/user/create">Register</button>--%>
-            <a type="button" class="btn btn-secondary" href="/user/create">Register</a>
-          </div>
+        <div class="d-grid gap-2 col-12 mx-auto">
+            <button class="w-100 btn-lg btn-primary" type="submit">Login</button>
+<%--            <button class="w-100 btn-lg btn-success" type="button" href="${pageContext.request.contextPath}/user/create">Register</button>--%>
+            <div class="col-md-12">
+                    <%--            <button type="submit" class="btn btn-secondary" formaction="${pageContext.request.contextPath}/user/create">Register</button>--%>
+                <a type="button" class="w-100 btn btn-success" href="/user/create">Register</a>
+            </div>
         </div>
-      </form:form>
-  </div>
-</div>
+    </form:form>
+</main>
+
+<script>
+    function showPassword() {
+        let x = document.getElementById("floatingPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 </body>
 </html>
+
