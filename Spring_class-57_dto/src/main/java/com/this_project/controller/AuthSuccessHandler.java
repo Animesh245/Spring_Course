@@ -36,6 +36,6 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
         //since we have created our custom success handler, it's up to us, to where we will redirect the user after successfully login
         SavedRequest savedRequest = new HttpSessionRequestCache().getRequest(request, response);
-        response.sendRedirect(savedRequest.getRedirectUrl().isEmpty() ? "/" : savedRequest.getRedirectUrl());
+        response.sendRedirect(savedRequest == null ? "/" : savedRequest.getRedirectUrl());
     }
 }
