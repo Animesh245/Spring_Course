@@ -4,9 +4,11 @@
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 <!--        <property name="hibernate.connection.url">jdbc:postgresql://172.18.0.1:5432/spring_form_db</property>-->
 <!--        <property name="hibernate.connection.url">jdbc:postgresql://social_community_db:5432/spring_form_db</property>-->
-        <property name="hibernate.connection.url">jdbc:postgresql://spring_form_db:5432/spring_form_db</property>
+<!--        <property name="hibernate.connection.url">jdbc:postgresql://spring_form_db:5432/spring_form_db</property>-->
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/form_db</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">dbpass</property>
+<!--        <property name="hibernate.connection.password">dbpass</property>-->
+        <property name="hibernate.connection.password">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
         <property name="hbm2ddl.auto">update</property>
