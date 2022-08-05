@@ -106,30 +106,30 @@
             <version>5.7.1</version>
         </dependency>
 
-        <!--AspectJ Runtime https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.9.7</version>
-            <scope>runtime</scope>
-        </dependency>
+<!--        &lt;!&ndash;AspectJ Runtime https://mvnrepository.com/artifact/org.aspectj/aspectjrt &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.aspectj</groupId>-->
+<!--            <artifactId>aspectjrt</artifactId>-->
+<!--            <version>1.9.7</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
 
 
-        <!--AspectJ Weaver https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.9.7</version>
-            <scope>runtime</scope>
-        </dependency>
+<!--        &lt;!&ndash;AspectJ Weaver https://mvnrepository.com/artifact/org.aspectj/aspectjweaver &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.aspectj</groupId>-->
+<!--            <artifactId>aspectjweaver</artifactId>-->
+<!--            <version>1.9.7</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
 
 
-        <!-- Log4j extras(1.2v with added features) https://mvnrepository.com/artifact/log4j/apache-log4j-extras -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>apache-log4j-extras</artifactId>
-            <version>1.2.17</version>
-        </dependency>
+<!--        &lt;!&ndash; Log4j extras(1.2v with added features) https://mvnrepository.com/artifact/log4j/apache-log4j-extras &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>log4j</groupId>-->
+<!--            <artifactId>apache-log4j-extras</artifactId>-->
+<!--            <version>1.2.17</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 
@@ -150,28 +150,30 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.14.0</version>
-                <configuration>
-                    <complianceLevel>11</complianceLevel>
-                    <source>11</source>
-                    <target>11</target>
-                    <showWeaveInfo>true</showWeaveInfo>
-                    <verbose>true</verbose>
-                    <Xlint>ignore</Xlint>
-                    <encoding>UTF-8 </encoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>       <!-- use this goal to weave all your main classes -->
-                            <goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>aspectj-maven-plugin</artifactId>-->
+<!--                <version>1.14.0</version>-->
+<!--                <configuration>-->
+<!--                    <complianceLevel>11</complianceLevel>-->
+<!--                    <source>11</source>-->
+<!--                    <target>11</target>-->
+<!--                    <showWeaveInfo>true</showWeaveInfo>-->
+<!--&lt;!&ndash;                    <forceAjcCompile>true</forceAjcCompile>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <source/>&ndash;&gt;-->
+<!--                    <verbose>true</verbose>-->
+<!--                    <Xlint>ignore</Xlint>-->
+<!--                    <encoding>UTF-8 </encoding>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>compile</goal>       &lt;!&ndash; use this goal to weave all your main classes &ndash;&gt;-->
+<!--                            <goal>test-compile</goal>  &lt;!&ndash; use this goal to weave all your test classes &ndash;&gt;-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>
