@@ -13,6 +13,8 @@
 <body>
 <%--<h1>${name}! Success</h1>--%>
 <%@include file="header.jsp" %>
+<%@include file="sidenav.jsp"%>
 <h3>${name}</h3>
+
 </body>
 </html>

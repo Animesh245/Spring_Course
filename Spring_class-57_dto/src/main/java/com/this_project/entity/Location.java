@@ -30,5 +30,5 @@ public class Location implements Serializable {
     private List<Status> statusList = new ArrayList<>();
 
     @OneToMany(orphanRemoval = true, mappedBy = "location" , fetch = FetchType.LAZY)
-    private List<User> userList = new ArrayList<>() ;
+    private List<User> userList = new ArrayList<>();
 }
