@@ -13,7 +13,7 @@
     <title>Create Location</title>
 </head>
 <body>
-<%@include file="../header.jsp" %>
+<%@include file="../navbar.jsp" %>
 
 <%--@elvariable id="locationDTO" type="com.this_project.dto.LocationDTO"--%>
 <form:form action="${pageContext.request.contextPath}/location/save" method="post" modelAttribute="locationDTO">

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<%@include file="../header.jsp" %>
+<%@include file="../navbar.jsp" %>
 <div class="container">
     <table class="table">
         <thead>
