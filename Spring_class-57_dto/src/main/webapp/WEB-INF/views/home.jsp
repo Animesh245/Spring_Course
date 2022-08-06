@@ -9,12 +9,15 @@
 <html>
 <head>
     <title>Home</title>
+
 </head>
 <body>
-<%--<h1>${name}! Success</h1>--%>
-<%@include file="header.jsp" %>
+<%@include file="navbar.jsp" %>
 <%@include file="sidenav.jsp"%>
-<h3>${name}</h3>
+
+<%--<h3>${name}</h3>--%>
+
 
 </body>
 </html>
+
