@@ -93,7 +93,7 @@ public class UserController {
             user.setAttachment(attachment);
             userDAO.saveUser(user);
 
-            location.getUserList().add(user);
+//            location.getUserList().add(user);
             locationDAO.updateLocation(location);
 
             model.addAttribute("user", user);
@@ -198,7 +198,7 @@ public class UserController {
         userDAO.updateUser(user);
 
 
-        location.getUserList().add(user);
+//        location.getUserList().add(user);
         locationDAO.updateLocation(location);
 
         return "redirect:/user/show/" + user.getId();
