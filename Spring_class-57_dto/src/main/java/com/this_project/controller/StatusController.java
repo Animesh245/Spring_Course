@@ -136,7 +136,7 @@ public class StatusController {
 //        status.setUser(userDTO.getUser().getUserName);
         statusDAO.update(status);
 
-        location.getStatusList().add(status);
+//        location.getStatusList().add(status);
         locationDAO.updateLocation(location);
 
         return "redirect:/status/show/" + status.getId();

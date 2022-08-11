@@ -29,17 +29,17 @@
 <%--&lt;%&ndash;                </li>&ndash;%&gt;--%>
 
 <%--                    <li class="nav-item">--%>
-<%--                        <sec:authorize access="hasAuthority('ROLE_ADMIN')">--%>
+<%--                        <sec:authorize access="hasAuthority('ADMIN')">--%>
 <%--                            <a class="nav-link" href="/user/list" > User List</a>--%>
 <%--                        </sec:authorize>--%>
 <%--                    </li>--%>
 
 <%--                    <li class="nav-item">--%>
-<%--                        <sec:authorize access="hasAuthority('ROLE_USER')" >--%>
+<%--                        <sec:authorize access="hasAuthority('USER')" >--%>
 <%--                            <a class="nav-link" href="/user/getUser" > Update User</a>--%>
 <%--                        </sec:authorize>--%>
 <%--                    </li>--%>
-<%--                <sec:authorize access="hasAuthority('ROLE_USER')" >--%>
+<%--                <sec:authorize access="hasAuthority('USER')" >--%>
 <%--                <li class="nav-item dropdown">--%>
 <%--                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">--%>
 <%--                        Status--%>
@@ -52,7 +52,7 @@
 <%--                </sec:authorize>--%>
 
 <%--                <li class="nav-item">--%>
-<%--                    <sec:authorize access="hasAuthority('ROLE_ADMIN')" >--%>
+<%--                    <sec:authorize access="hasAuthority('ADMIN')" >--%>
 <%--                        <a class="nav-link" href="/status/list" > Status List</a>--%>
 <%--                    </sec:authorize>--%>
 <%--                </li>--%>

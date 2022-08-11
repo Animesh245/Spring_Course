@@ -4,7 +4,6 @@ package com.this_project.controller;
 
 import com.this_project.config.Properties;
 import com.this_project.config.Utils;
-import com.this_project.dao.AttachmentDAO;
 import com.this_project.dao.LocationDAO;
 import com.this_project.dao.UserDAO;
 import com.this_project.dto.UserDTO;
@@ -14,21 +13,16 @@ import com.this_project.entity.Role;
 import com.this_project.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -56,7 +50,7 @@ public class UserController {
         }
 
 
-//        model.addAttribute("roleList", Arrays.asList("ROLE_USER", "ROLE_ADMIN"));
+//        model.addAttribute("roleList", Arrays.asList("USER", "ADMIN"));
         model.addAttribute("stringLocationList", stringLocationList);
         model.addAttribute("userDTO",new UserDTO());
         return new ModelAndView("/user/create","model", model);
@@ -88,12 +82,12 @@ public class UserController {
             user.setUserName(userDTO.getName());
             user.setUserEmail(userDTO.getEmail());
             user.setUserPassword(passwordEncoder.encode(userDTO.getPassword()));
-            user.setRole(Role.ROLE_USER);
+            user.setRole(Role.USER);
             user.setLocation(location);
             user.setAttachment(attachment);
             userDAO.saveUser(user);
 
-            location.getUserList().add(user);
+//            location.getUserList().add(user);
             locationDAO.updateLocation(location);
 
             model.addAttribute("user", user);
@@ -198,7 +192,7 @@ public class UserController {
         userDAO.updateUser(user);
 
 
-        location.getUserList().add(user);
+//        location.getUserList().add(user);
         locationDAO.updateLocation(location);
 
         return "redirect:/user/show/" + user.getId();

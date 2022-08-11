@@ -35,7 +35,7 @@ public class AuthController {
             user.setUserName("admin");
             user.setUserEmail("admin@gmail.com");
             user.setUserPassword(passwordEncoder.encode("1111"));
-            user.setRole(Role.ROLE_ADMIN);
+            user.setRole(Role.ADMIN);
             userDAO.saveUser(user);
         }
 
@@ -45,7 +45,7 @@ public class AuthController {
             user.setUserName("user");
             user.setUserEmail("user@gmail.com");
             user.setUserPassword(passwordEncoder.encode("1111"));
-            user.setRole(Role.ROLE_USER);
+            user.setRole(Role.USER);
             userDAO.saveUser(user);
         }
     }
