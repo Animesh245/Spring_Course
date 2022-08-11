@@ -59,7 +59,7 @@
 
 <%--                <li class="nav-item dropdown">--%>
 
-<%--                    <sec:authorize access="hasRole('ADMIN')">--%>
+<%--                    <sec:authorize access="hasRole('ROLE_ADMIN')">--%>
 <%--                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">--%>
 <%--                                                Location--%>
 <%--                                            </a>--%>

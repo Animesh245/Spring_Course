@@ -47,7 +47,7 @@ public class SecurityConfig{
                                         .antMatchers("/images/**", "/css/**", "/js/**", "/vendor/**").permitAll()
 //                        Permitting /login and /user type urls to all
                                         .antMatchers("/auth/login/**", "/status/list", "/user/create", "/user/save", "/status/card-view").permitAll()
-//                        /location/** type url can be accessed only if client's role is ADMIN
+//                        /location/** type url can be accessed only if client's role is ROLE_ADMIN
                                         .antMatchers("/location/create","/status/delete/**", "/user/delete/**").hasAuthority("ROLE_ADMIN")
                                 .antMatchers("/location/list").hasAnyRole("USER","ADMIN")
                                 .antMatchers("/status/create","/status/update/**","/status/delete/**", "/user/update/**").hasRole("USER")
