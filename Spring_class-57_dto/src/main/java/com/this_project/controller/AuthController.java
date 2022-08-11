@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
-import java.security.Security;
 
 @Controller
 @RequestMapping(value = "/auth")
@@ -36,7 +35,7 @@ public class AuthController {
             user.setUserName("admin");
             user.setUserEmail("admin@gmail.com");
             user.setUserPassword(passwordEncoder.encode("1111"));
-            user.setRole(Role.ROLE_ADMIN);
+            user.setRole(Role.ADMIN);
             userDAO.saveUser(user);
         }
 
@@ -46,7 +45,7 @@ public class AuthController {
             user.setUserName("user");
             user.setUserEmail("user@gmail.com");
             user.setUserPassword(passwordEncoder.encode("1111"));
-            user.setRole(Role.ROLE_USER);
+            user.setRole(Role.USER);
             userDAO.saveUser(user);
         }
     }
